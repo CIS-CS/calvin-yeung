@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=void\ startClock()
+comment1.params=
+comment1.target=void\ stopClock()
+comment2.params=
+comment2.target=boolean\ isRunning()
+numComments=3
