@@ -1,6 +1,7 @@
-# Calvin’s Repository
+## Calvin’s Repository
 See corresponding folder for class/homework.
 
-- "BlueJ Work" contains OF work
-- "Crossword Puzzles" contains finished crosswords
-- "Misc Programs" contain extra programs and fun stuff
+- hw-bluej: OF work
+- hw-netbeans: Netbeans work
+- hw-crossword: images of finished crosswords
+- misc: extra programs and fun stuff
