@@ -14,6 +14,7 @@ public class LabClass
     private String timeAndDay;
     private ArrayList<Student> students;
     private int capacity;
+    private String advisory;
     
     /**
      * Create a LabClass with a maximum number of enrolments. All other details
@@ -26,6 +27,10 @@ public class LabClass
         timeAndDay = "unknown";
         students = new ArrayList<Student>();
         capacity = maxNumberOfStudents;
+    }
+    
+    public String getAdvisory() {
+        return advisory;
     }
 
     /**
@@ -55,6 +60,11 @@ public class LabClass
     public void setRoom(String roomNumber)
     {
         room = roomNumber;
+    }
+    
+    public boolean setAdvisory(String a) {
+        advisory = a;
+        return true;
     }
     
     /**

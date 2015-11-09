@@ -49,14 +49,16 @@ public class TicketMachine
      * Receive an amount of money from a customer.
      * Check that the amount is sensible.
      */
-    public void insertMoney(int amount)
+    public boolean insertMoney(int amount)
     {
         if(amount > 0) {
             balance = balance + amount;
+            return true;
         }
         else {
             System.out.println("Use a positive amount rather than: " +
                                amount);
+            return false;
         }
     }
 
@@ -65,7 +67,7 @@ public class TicketMachine
      * reduce the current balance by the ticket price. Print
      * an error message if more money is required.
      */
-    public void printTicket()
+    public boolean printTicket()
     {
         if(balance >= price) {
             // Simulate the printing of a ticket.
@@ -80,11 +82,13 @@ public class TicketMachine
             total = total + price;
             // Reduce the balance by the prince.
             balance = balance - price;
+            
+            return true;
         }
         else {
             System.out.println("You must insert at least: " +
                                (price - balance) + " more cents.");
-                    
+            return false;       
         }
     }
 
