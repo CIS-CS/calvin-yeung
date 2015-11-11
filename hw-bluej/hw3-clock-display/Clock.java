@@ -1,35 +1,29 @@
 import java.util.Calendar;
 
-/**
- * Uses a ClockDisplay to display the time.
- * 
- * @author MHayes 
- * @version Sep2015
- */
-public class Clock implements Runnable
-{
+public class Clock {
     private ClockDisplay clock;
     
-    public Clock()
-    {
-        clock = new ClockDisplay(12,55,20);
+    public Clock() {
+        clock = new ClockDisplay();
+    }
+    
+    public Clock(int h, int m, int s, String mer) {
+        clock = new ClockDisplay(h, m, s, mer);
     }
     
     public void run() 
     {    
         int previousSecond = -1;
         
-        while (ClockRunner.isRunning()) {
+        while (true) {
             Calendar calendar  = Calendar.getInstance();
             int currentSecond = calendar.get(Calendar.SECOND);
             
             if (currentSecond != previousSecond)
             {
                 clock.timeTick();
-                System.out.println(clock.getTime());
                 previousSecond = currentSecond;
             }
         }
     }
 }
-    
