@@ -55,31 +55,38 @@ class Book
         return courseText;
     }
     
-    public void printAuthor() {
+    public boolean printAuthor() {
         System.out.printf("Author: %s\n", author);
+        return true;
     }
     
-    public void printTitle() {
+    public boolean printTitle() {
         System.out.printf("Title: %s\n", title);
+        return true;
     }
     
-    public void printDetails() {
+    public boolean printDetails() {
         printAuthor();
         printTitle();
         System.out.printf("Pages: %d\n", pages);
         if(refNumber.length() > 0)
             System.out.printf("#: %s\n", refNumber);
         System.out.printf("Borrowed: %d\n", borrowed);
+        
+        return true;
     }
     
-    public void setRefNumber(String ref) {
-        if(ref.length() >= 3)
+    public boolean setRefNumber(String ref) {
+        if(ref.length() >= 3) {
             refNumber = ref;
-        else
-            System.out.println("Ref Number must be at least 3 characters!");
+            return true;
+        }
+        
+        else return false;
     }
     
-    public void borrow() {
+    public boolean borrow() {
         borrowed++;
+        return true;
     }
 }
