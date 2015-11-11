@@ -22,12 +22,17 @@ public class ClockDisplay {
 
     public void timeTick() {
         seconds.increment();
-        if(seconds.getValue() == 0)
+        if(seconds.getValue() == 0) {
             minutes.increment();
-        if(minutes.getValue() == 0 && seconds.getValue() == 0)
-            hours.increment();
-        if(hours.getValue() == 0 && minutes.getValue() == 0 && seconds.getValue() == 0)
-            toggleMeridien();
+            
+            if(minutes.getValue() == 0) {
+                hours.increment();
+                
+                if(hours.getValue() == 0)
+                    toggleMeridien();
+            }
+        }
+        
         updateDisplay();
     }
     
@@ -40,6 +45,7 @@ public class ClockDisplay {
         minutes.setValue(minute);
         seconds.setValue(second);
         meridien = mer;
+        
         updateDisplay();
     }
     
