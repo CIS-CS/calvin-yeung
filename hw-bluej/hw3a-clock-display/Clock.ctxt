@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Clock()
+comment1.params=h\ m\ mer
+comment1.target=Clock(int,\ int,\ java.lang.String)
+comment2.params=
+comment2.target=void\ run()
+numComments=3
