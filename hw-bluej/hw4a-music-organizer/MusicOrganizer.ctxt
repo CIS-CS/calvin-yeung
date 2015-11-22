@@ -1,0 +1,16 @@
+#BlueJ class context
+comment0.params=
+comment0.target=MusicOrganizer()
+comment1.params=fileName
+comment1.target=void\ addFile(java.lang.String)
+comment2.params=
+comment2.target=int\ getNumberOfSongs()
+comment3.params=i
+comment3.target=boolean\ validIndex(int)
+comment4.params=i
+comment4.target=void\ checkIndex(int)
+comment5.params=index
+comment5.target=boolean\ listFile(int)
+comment6.params=index
+comment6.target=boolean\ removeFile(int)
+numComments=7
