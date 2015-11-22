@@ -1,7 +1,7 @@
 public class Heater {
-    private float temperature, min, max, increment;
+    private double temperature, min, max, increment;
     
-    public Heater(float min, float max) {
+    public Heater(double min, double max) {
         this.min = min;
         this.max = max;
         
@@ -9,7 +9,7 @@ public class Heater {
         increment = 5f;
     }
     
-    public boolean setIncrement(float inc) {
+    public boolean setIncrement(double inc) {
         if(inc > 0) {
             increment = inc;
             return true;
@@ -32,7 +32,7 @@ public class Heater {
             temperature = min;
     }
     
-    public float getTemperature() {
+    public double getTemperature() {
         return temperature;
     }
 }

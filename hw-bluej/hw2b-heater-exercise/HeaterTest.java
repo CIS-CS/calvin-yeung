@@ -8,8 +8,8 @@ import org.junit.Test;
 /**
  * The test class HeaterTest.
  *
- * @author  (your name)
- * @version (a version number or a date)
+ * @author  MHayes
+ * @version 21-Nov-2015
  */
 public class HeaterTest
 {
@@ -43,14 +43,14 @@ public class HeaterTest
     @Test
     public void testConstructor()
     {
-        Heater heater1 = new Heater(0, 25);
+        Heater heater1 = new Heater(5, 100);
         assertEquals(15.0, heater1.getTemperature(), 0.1);
     }
 
     @Test
     public void testWarmer()
     {
-        Heater heater1 = new Heater(0, 25);
+        Heater heater1 = new Heater(5, 25);
         heater1.warmer();
         assertEquals(20.0, heater1.getTemperature(), 0.1);
         heater1.warmer();
@@ -62,31 +62,34 @@ public class HeaterTest
     @Test
     public void testCooler()
     {
-        Heater heater1 = new Heater(0, 25);
+        Heater heater1 = new Heater(5, 25);
         assertEquals(15.0, heater1.getTemperature(), 0.1);
         heater1.cooler();
         assertEquals(10.0, heater1.getTemperature(), 0.1);
         heater1.cooler();
         assertEquals(5.0, heater1.getTemperature(), 0.1);
         heater1.cooler();
-        assertEquals(0.0, heater1.getTemperature(), 0.1);
-        heater1.cooler();
-        assertEquals(0.0, heater1.getTemperature(), 0.1);
+        assertEquals(5.0, heater1.getTemperature(), 0.1);
     }
 
     @Test
     public void testSetIncrement()
     {
-        Heater heater1 = new Heater(0, 25);
-        assertEquals(true, heater1.setIncrement(3));
-        assertEquals(false, heater1.setIncrement(0));
+        Heater heater1 = new Heater(5, 25);
         assertEquals(false, heater1.setIncrement(-1));
-        heater1.cooler();
-        assertEquals(12.0, heater1.getTemperature(), 0.1);
         heater1.warmer();
+        assertEquals(20.0, heater1.getTemperature(), 0.1);
+        assertEquals(false, heater1.setIncrement(0.0));
+        heater1.cooler();
+        assertEquals(15.0, heater1.getTemperature(), 0.1);
+        assertEquals(true, heater1.setIncrement(1.0));
+        heater1.warmer();
+        assertEquals(16.0, heater1.getTemperature(), 0.1);
+        heater1.cooler();
         assertEquals(15.0, heater1.getTemperature(), 0.1);
     }
 }
+
 
 
 
