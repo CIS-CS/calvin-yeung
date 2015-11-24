@@ -61,20 +61,12 @@ public class MusicOrganizer {
     }
     
     public void playRandom(int num) {
-        ArrayList<Track> upNext = new ArrayList<Track>();
-        ArrayList<Integer> indicies = new ArrayList<Integer>();
+        ArrayList<Track> upNext = (ArrayList<Track>) tracks.subList(0, tracks.size());
         Random random = new Random();
         
-        if(tracks.size() >= num && num > 0) {
-            for(int i = 0; i < num; i++)
-                indicies.add(num);
-                
-            while(upNext.size() < num) {
-                int index = random.nextInt(indicies.size());
-                upNext.add(tracks.get(indicies.get(index)));
-                indicies.remove(index);
-            }
-        }
+        if(tracks.size() >= num && num > 0)   
+            while(upNext.size() > num)
+                upNext.remove(random.nextInt(upNext.size()));
         
         for(Track t : upNext)
             player.startPlaying(t.getFilename());
