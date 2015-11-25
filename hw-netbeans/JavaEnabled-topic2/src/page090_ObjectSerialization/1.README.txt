@@ -1,0 +1,28 @@
+Object Serialization (not required for the course)
+--------------------
+You can read/write text to a sequential file.  You can also read/write whole 
+objects to a sequential file.
+When an object is written to a file, the object is 'serialized' (decomposed).  
+When the same data is read back, the data is 'de-serialized' to recompose the 
+object.
+
+VideoTapeS.java
+    This is the same as the VideoTape class in the "page090_DataFiles"
+    package, except that it implements the Serializable interface.
+    Objects that implement this interface can be serialized to a file.
+
+VideoStoreS.java
+    This class reads/writes VideoTapeS objects to/from a sequential file.
+    An array is an object, so an entire array of objects can be written to the
+    file.
+
+    Text data: When we read/write text to the file, we use:
+
+        write:  PrintWriter --> FileWriter --> file
+        read:   file --> FileReader --> BufferedReader
+
+    Object data: When we read/write whole objects to the file, we use:
+
+        write:  ObjectOutputStream --> FileOutputStream --> file
+        read:   file --> FileInputStream --> ObjectInputStream
+

@@ -1,0 +1,22 @@
+Trace Algorithms in Java
+
+Page 103-105 in the book talks about how to trace an algorithm. The algorithm
+and its description in the book are not very good.
+
+The algorithm that they use deals with creating a full index to a data file.
+The code is ugly.  Ignore it for now.
+
+BookIndex.java
+--------------
+
+
+BadBookException.java
+---------------------
+
+    Simply extends Exception.java.  
+    The constructor for the BookIndex class can throw this exception.
+
+
+InsertBook.java
+---------------
+

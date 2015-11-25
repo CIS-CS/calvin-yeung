@@ -1,0 +1,70 @@
+These files are from the Sun Java Tutorial:
+    Essential Java classes > Basic I/O
+
+--------------------------------------------------------------------------------
+CopyBytes.java   (byte streams)
+
+    Uses byte streams to copy the data file, one byte at a time.
+    Byte streams read and write bytes; low-level, physical I/O.
+    Data is written to the beginning of the file; it is not appended to the
+    end of the file.
+    All other streams are built on byte streams.
+    No real need to use byte streams.
+
+    FileInputStream  <-- file
+    FileOutputStream --> file
+
+--------------------------------------------------------------------------------
+data.txt
+
+    The data file for CopyBytes, CopyCharacters
+    Put a copy of the file in the root folder of your C: drive.
+
+--------------------------------------------------------------------------------
+CopyCharacters.java   (character streams)
+
+    Uses character streams to copy the data file, one character at a time.
+    Character streams use byte streams.
+    Byte streams read/write bytes from the file, while character streams
+    convert the bytes to characters.
+    
+    FileReader <-- FileInputStream  <-- file
+    FileWriter --> FileOutputStream --> file
+
+--------------------------------------------------------------------------------
+CopyLines.java    (line-oriented I/O; buffered I/O)
+
+    Uses buffers to copy the data file, one line at a time.
+    Disk reads occur when the buffer is empty.
+    Disk writes occur when the buffer is full.
+    More efficient because there are fewer trips to the disk.
+
+    Buffered character streams:
+        BufferedReader <-- FileReader <-- file
+        BufferedWriter --> FileWriter --> file
+
+    Buffered byte streams:
+        BufferedInputStream  <-- InputStream  <-- file
+        BufferedOutputStream <-- OutputStream <-- file
+
+    This app uses BufferedReader, PrintWriter buffered-character-streams.
+        BufferedReader <-- FileReader <-- file
+        PrintWriter    --> FileWriter --> file
+
+    Flush a stream: to force a write to the disk.
+
+--------------------------------------------------------------------------------
+CopyFileGUI.java
+
+    Makes copies of a OpenOffice ODT file.
+    Reads a text file that contains student names.
+    The student name is prepended to the front of each filename for each copy.
+
+    Has a Swing user interface.
+    Note that it uses the system LnF (look and feel), not the default Java LnF.
+    Uses a BufferedReader to read the text file.
+    Uses byte streams (FileInputStream, FileOutputStream) to dupe the file.
+
+    Note also how the application shuts down. See the comment for the
+    shutdownApplication() method.
+

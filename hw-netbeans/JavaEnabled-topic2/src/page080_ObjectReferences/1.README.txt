@@ -1,0 +1,15 @@
+Object references
+-----------------
+An object-reference variable is a variable that contains a reference to an
+object. The variable may refer to only one object at a time.
+More than one object-reference variable may be pointing at a given object.
+The following class illustrates this.
+
+--------------------------------
+TimeApp.java
+
+    This class creates a Time2 object.  It creates two object-reference
+    variables that each refer to the same Time2 object.
+    It demonstrates that you can manipulate an object via any object-reference
+    variable that refers to that object.
+

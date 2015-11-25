@@ -1,0 +1,64 @@
+The term 'record' is not a Java term.  Java does not support records as such.  
+In this context, record refers to a line in a text file, which may or may not
+be in some sequence.
+We can create a class to represent a file record.
+
+VideoTape.java
+
+    This class is an example of a 'composite data structure',
+    or what other languages might call a 'record'.
+    The VideoTape class is used to represent a video tape 'record' in a file.
+    It is a class with some fields, and get/set methods to manipulate the fields.  
+    That's it.  
+    There is no main() method, thus, this class cannot be run as an application.
+    The VideoTape class can be used by other classes.
+
+VideoStore.java
+
+    The class uses an array to store VideoTape objects.
+    The program prompts the user for information about video tapes, and stores 
+    the information in VideoTape objects.
+
+*** Hierarchical composite data structure (HCDS) ***
+
+    HCDS is one of the Mastery aspects for the Dossier.
+    See --> Subject Guide > Assessment details > Mastery > High level
+    The array of VideoTape objects in VideoStore is an example of a relatively 
+    simple, hierarchical composite data structure.
+
+Exercise 1:
+    Improve the VideoStore application so that it can delete a VideoTape.
+    (this has been done in VideoStore2 and VideoStore3. try to do this 
+     exercise without looking at those classes)
+
+       Add a delete option to the menu.
+       The user will select the video number to be deleted.
+    Two ways to do a delete: 
+      1. shuffle the array to 'fill in' the empty element
+         subsequent Add's would continue to be after the last element
+      2. mark the deleted item as deleted, creating an available spot for the 
+         next Add.
+         subsequent Add's would look for a free element, or add at the end
+
+Exercise 2:
+    The doCommand() method in the VideoStore class is not very elegant.
+    Imagine if there were 25 commands; the doCommand() method would become
+    very long, and rather ugly.
+    Think of a more elegant way to write this method using the switch statement.
+    Note that a char can be treated as a positive integer.
+    Add some additional commands that simply display the name of the command
+    back to the user, eg, "You pressed the x command."
+
+VideoStore2.java    
+
+    This version does a Delete by shuffling the array.
+    The List operation is relatively fast.
+
+VideoStore3.java    
+
+    This version does a Delete by setting the deleted item to null.      
+    The Delete function creates a free space.
+    The Add function now adds into the first free space.
+    The List function has to check every element of the array.
+
+

@@ -1,0 +1,77 @@
+Higher Level File Handling
+
+Random Access Files
+-------------------
+When writing objects to a RAF (random access file), we want each object to be 
+the same size.  This would allow us to easily seek to the beginning of any 
+record in the file.
+This is similar to an array in that every element in the array is of the same 
+type (size), thus, allowing for easy indexing into the array.
+
+-------------------------------------------------------------------------------------------
+
+SimpleRAF.java
+
+    A simple example of using a random access file (RAF).
+    The main() method writes some long's to the RAF, and then uses the seek 
+    operation to read the long's in reverse order.
+
+-------------------------------------------------------------------------------------------
+Note: These classes are from the red book. This is not a good design. A better
+      design is shown in the next section.
+
+VideoTapeFile.java
+
+    This class extends the VideoTape class from the page084_Records package.
+    It includes methods for reading and writing VideoTapeFile objects to a RAF.
+    This is not the best way to do this.
+    The I/O should be handled by another class, eg, a class called Persister.
+
+VideoStoreRandom.java
+
+     This is basically the same as the VideoStore class in page090_DataFiles.
+     The difference is that it works with VideoTapeFile objects; these objects 
+     include methods to read/write the VideoTapeFile objects to the RAF.
+     This is an awkward design.   
+
+-------------------------------------------------------------------------------------------
+
+A better design for this application would be to seperate the I/O functionality 
+from the VideoTape class.  VideoTape's are not responsible for talking to files.
+A better design would have three classes: VideoStore, VideoTape, and Persister 
+(to handle the I/O).  The VideoStore class would use the Persister class to 
+read/write VideoTape objects to the RAF.  This would be a three-tier architecture.
+
+    VideoStore <--> VideoTape <--> Persister <--> datastore(RAF)
+
+
+VideoTape.java
+
+    This version of VideoTape does not do any I/O.  It just contains information 
+    about a video.  Note the getAdjustedTitle() method; it ensures that the title
+    for every video tape is the same length; the result is a fixed record size.
+
+Persister.java
+
+    This class is the only one that talks to the RAF.  The constructor opens the 
+    RAF file.
+    The VideoStore class creates a Persister object and uses the Persister 
+    object to read/write VideoTape objects to the RAF.
+
+VideoStore.java
+
+    This class interacts with the user.  It does not talk to the RAF directly.
+    It gets video details from the user, creates VideoTape objects, and then 
+    passes the VideoTape objects to the Persister which writes them to the file.
+    The records are not in any sequence; new records are added at the end of
+    the file.
+
+
+
+
+
+    
+
+
+
+   

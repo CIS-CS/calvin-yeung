@@ -1,0 +1,24 @@
+This set of classes illustrates a very simple, four-tier architecture for an
+application.
+    UI -- Object Model -- Persistence -- Datastore
+
+UI = user interface.
+The UI can be a GUI (graphical), or CLI (command line interface).
+
+---------------------------
+StudentLogger.java
+    This class is is the user interface (CLI).
+
+Student.java
+    The object model. In this application there is only one class in the
+    object model. There could be many.
+
+Persister.java
+    The persistence layer. This is the bridge bewteen the world of objects in
+    the object model, and the world of records in the datastore.
+
+Datastore
+    In this application, the datastore is a simple text file. In other
+    applications the datastore could be an RAF (random access file) or an
+    RDBMS (relational database management system). 
+    RDBMS is not required for the course.

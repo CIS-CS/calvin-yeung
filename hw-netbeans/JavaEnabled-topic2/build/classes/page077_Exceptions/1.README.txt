@@ -1,0 +1,34 @@
+Exceptions:
+-----------
+An exception is a runtime error condition. When the error occurs, an Exception
+object is created and contains information about the error.
+Many methods in the Java library can throw an exception.
+When you call such a method, your method has to handle the exception.
+Your method can handle the exception by 1) catching it, or 2) by throwing
+the exception to the caller.
+
+The methods you write can also throw exceptions.
+You can create your own exception classes and throw those exceptions.
+
+Related Java key words
+----------------------
+try
+catch
+throw
+throws
+finally
+
+ExceptionApp.java
+    Prompts the user for a number.
+    If user enters non-numeric data, a NumberFormatException is raised.
+
+TimeApp.java
+
+    Prompts the user for the hour of day (1-12) and meridian (am or pm).
+    If user enters bad data, a TimeException is created.
+
+TimeException.java
+    A user-defined exception class; extends the Exception class.
+    It is thrown by the Time constructor (page073 package) if user has
+    entered bad data.
+

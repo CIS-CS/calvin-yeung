@@ -1,0 +1,33 @@
+Evaluate Algorithms in Java
+
+This section talks about testing an algorithm to see if can handle various
+data conditions.
+1. Run the Shuffle application with various data sets to see if runs properly.
+2. Edit the array to change the data set.
+3. You will discover that there are problems with the algorithm.
+   Your job is to isolate the problem without looking at Shuffle2.java
+
+Shuffle.java
+------------
+
+    The class contains an array of Strings to represent names of people.
+    Blank entries are indicated by "XXXX".
+    The program attempts to shuffle the names to the left, and the 'XXXX'
+    entries to the right.
+
+    The algorithm has some problems. For example, it does not work for the
+    test data provided on p.107 of the red book.
+    See if you can fix the algorithm without looking at Shuffle2.java
+
+Shuffle2.java
+-------------
+
+    This class fixes problems in Shuffle.java
+
+Exercise
+--------
+In an attempt to automate the testing of this algorithm, place the test data
+into a file. Each set of test data should be a separate record in the file.
+Read each file record, create the names[] array, do the shuffle, and display
+the shuffled result. Display the un-shuffled data followed by the shuffled data.
+Compose the test data file with as many scenarios as you can think of.

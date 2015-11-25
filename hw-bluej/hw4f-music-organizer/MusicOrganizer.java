@@ -61,8 +61,11 @@ public class MusicOrganizer {
     }
     
     public void playRandom(int num) {
-        ArrayList<Track> upNext = (ArrayList<Track>) tracks.subList(0, tracks.size());
+        ArrayList<Track> upNext = new ArrayList<Track>();
         Random random = new Random();
+        
+        for(Track t : tracks)
+            upNext.add(t);
         
         if(tracks.size() >= num && num > 0)   
             while(upNext.size() > num)

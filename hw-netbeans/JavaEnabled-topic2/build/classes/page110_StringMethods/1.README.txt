@@ -1,0 +1,25 @@
+Methods of the String class
+
+Examples of using some of the methods from the String class.
+Refer to JETS in the Subject Guide (p98, PDF page 104) to see which methods
+you are expected to know.
+
+StringMethods.java
+------------------
+  A simple program tha uses the following methods from the String class:
+  charAt, length, toLowerCase, toUpperCase, indexOf
+  It prompts the user for a string, and then manipulates the string.
+
+StringMethods2.java (tokenizes)
+-------------------
+  Similar to StringMethods but has some additional featutes, eg, it can
+  tokenize the input string using the split method from the String class.
+  It uses the following methods from the String class:
+  charAt, length, toLowerCase, toUpperCase, indexOf, split
+
+StringDemo.java
+---------------
+  A simple program that uses more methods from the String class.
+  Uses: equals, substring, length, compareTo
+
+

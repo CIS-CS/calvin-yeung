@@ -1,0 +1,75 @@
+Sorting
+-------
+Each of the three algorithms below uses in-place comparisons with iteration.
+They do not use recursion like the Quicksort in topic 5.2
+These algorithms are ok for small data sets, but they become very slow
+for large data sets. Quicksort is better for large data sets.
+Note, only BubbleSort and SelectionSort are mentioned in the syllabus.
+
+These three algorithms are all O(n2), but InsertionSort outperforms SelectionSort,
+which outperforms BubbleSort. The reason for this, stated informally, is that
+each algorithm takes about the same time to find the item that needs to be
+sorted, but BubbleSort requires the most amount of work getting that item into
+the correct spot.
+As for the merits of InsertionSort, "being the best of the worst is nothing to
+be proud of." - Justin Chan (9-Mar-2010)
+
+Wikipedia: "when humans manually sort a deck of playing cards, for example, most
+use a method that is similar to insertion sort."
+Thus, insertion sort would be the most intuitive of the three.
+
+
+BubbleSort.java
+---------------
+Sorts data in an array, in ascending order, using bubble sort.
+Uses a boundary pointer that moves from R to L.
+Sorted items are stored on the right side of the boundary.
+Items on the L are bubbling to the R.
+
+Performance: always O(n2)
+
+Exercise: add a method called sortDesc() to sort the data in descending order.
+Exercise: test the duration of one of the sort methods, using increasingly large
+          data sets. use the Profiler in Netbeans to display the duration
+          on-screen.
+          do not display the data after each swap.
+          what do you notice?
+Exercise: edit sortAsc() to break if data is already sorted.
+Exercise: write a new app that prompts user for student details (fname, lname).
+          store the details in a Student[]
+          display the students on-screen in alpha order by fname.
+          you can use a GUI for this. put student info in a text area.
+
+
+SelectionSort.java
+------------------
+Sorts data in an array, in ascending order, using selection sort.
+Uses a boundary pointer that moves from L to R.
+Selects the min from the R and swaps it into the L.
+Move the boundary and repeat.
+
+Performance: always O(n2)
+
+Exercise: add a method called sortDesc() to sort the data in descending order.
+Exercise: test the duration of the sort using increasingly large data sets.
+          use the Calendar class to display the duration on-screen.
+          what do you notice?
+          do not display the data after each swap.
+Exercise: review pages 114-129 in the red book.
+          in particular, look at sections 2.1.9-10 which cover efficiency.
+          how is BubbleSort potentially more efficient than SelectionSort
+
+
+InsertionSort.java (not included in the syllabus)
+------------------
+Sorts data in an array, in ascending order, using insertion sort.
+Sorted portion is on the left; unsorted portion is on the right.
+Each unsorted item from the R is moved to a temp location, and then inserted
+into the sorted portion on the left.
+Sorted portion is shuffled R (from the right) until the temp item can be inserted.
+
+Performance:
+Best case = O(n): If the data is already sorted, the boundaries are 
+moved, but no swapping is needed.
+Worst case = O(n2)
+

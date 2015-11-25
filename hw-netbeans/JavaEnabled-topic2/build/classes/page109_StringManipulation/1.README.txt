@@ -1,0 +1,27 @@
+Example of String Manipulation
+
+This example "tokenizes" a string using string manipulation.
+A token is a component of a larger string; a token is a group of characters
+seperated by a delimiter.
+
+Tokenizer.java
+--------------
+    This class uses the StringBuffer class and String manipulation to implement 
+    a tokenizer program.
+    Not sure how useful this is since it is OK for you to use the StringTokenizer 
+    class from the library. (see FileTokenizer below)
+
+Tokenizer2.java
+---------------
+    This version prompts the user for a string, and then displays the tokens of
+    the string.
+
+FileTokenizer.java
+------------------
+    This application writes a record to a sequential file. The words are the
+    tokens, the spaces are the delimiters.
+    It then reads the record from the file, uses the StringTokenizer class to
+    extract the tokens from the record, and displays the tokens.
+
+    Note that you can also use the split method in the String class to
+    parse fields from a record.
