@@ -60,23 +60,29 @@ public class MusicOrganizer {
             tracks.remove(index);
     }
     
-    public void playRandom(int num) {
+    public String playRandom(int num) {
         ArrayList<Track> upNext = new ArrayList<Track>();
         Random random = new Random();
+        String s = "";
         
         for(Track t : tracks)
             upNext.add(t);
         
-        if(tracks.size() >= num && num > 0)   
+        if(tracks.size() >= num && num > 0) {
             while(upNext.size() > num)
                 upNext.remove(random.nextInt(upNext.size()));
         
-        for(Track t : upNext)
-            player.startPlaying(t.getFilename());
+            for(Track t : upNext) {
+                System.out.println(t.getFilename());
+                s = s + t.getFilename() + " ";
+            }
+        }
+        
+        return s.length() > 0 ? s.substring(0, s.length() - 1) : null;
     }
     
-    public void playAllRandom() {
-        playRandom(tracks.size());
+    public String playAllRandom() {
+        return playRandom(tracks.size());
     }
     
     public void playFirst() {
