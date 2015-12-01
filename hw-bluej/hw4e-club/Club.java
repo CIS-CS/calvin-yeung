@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Club {
     private ArrayList<Membership> members;
@@ -31,10 +32,16 @@ public class Club {
            System.err.printf("Error: month must be in range 1-12!\n");
            return null;
        }
-        
-       for(Membership m : members)
-           if(m.getMonth() == month && m.getYear() == year)
+       
+       Iterator<Membership> iter = members.iterator();
+       while(iter.hasNext()) {
+           Membership m = iter.next();
+           
+           if(m.getMonth() == month && m.getYear() == year) {
                p.add(m);
+               iter.remove();
+           }
+       }
                
        return p;
     }
