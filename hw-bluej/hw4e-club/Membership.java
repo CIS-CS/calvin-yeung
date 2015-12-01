@@ -19,8 +19,7 @@ public class Membership
      * @param month The month in which they joined. (1 ... 12)
      * @param year The year in which they joined.
      */
-    public Membership(String name, int month, int year)
-        throws IllegalArgumentException
+    public Membership(String name, int month, int year) throws IllegalArgumentException
     {
         if(month < 1 || month > 12) {
             throw new IllegalArgumentException(
@@ -61,8 +60,6 @@ public class Membership
      */
     public String toString()
     {
-        return "Name: " + name +
-               " joined in month " +
-               month + " of " + year;
+        return "Name: " + name + " joined in month " + month + " of " + year;
     }
 }

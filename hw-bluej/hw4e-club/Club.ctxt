@@ -5,4 +5,6 @@ comment1.params=member
 comment1.target=boolean\ join(Membership)
 comment2.params=
 comment2.target=int\ numberOfMembers()
-numComments=3
+comment3.params=month\ year
+comment3.target=java.util.ArrayList\ purge(int,\ int)
+numComments=4
