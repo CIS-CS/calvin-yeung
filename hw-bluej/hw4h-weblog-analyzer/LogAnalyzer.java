@@ -49,7 +49,7 @@ public class LogAnalyzer {
         int h = -1, hits = Integer.MAX_VALUE;
         
         for(int i = 0; i < hourCounts.length; i++) {
-            if(hourCounts[i] > hits) {
+            if(hourCounts[i] < hits) {
                 hits = hourCounts[i];
                 h = i;
             }
@@ -58,7 +58,7 @@ public class LogAnalyzer {
         return h;
     }
     
-    public String busiestTwoHourPeriod() {
+    public int busiestTwoHours() {
         int h = -1, hits = Integer.MIN_VALUE;
         
         for(int i = 0; i < hourCounts.length - 1; i++) {
@@ -70,6 +70,6 @@ public class LogAnalyzer {
             }
         }
         
-        return String.format("%d-%d", h, h + 1);
+        return h;
     }
 }
