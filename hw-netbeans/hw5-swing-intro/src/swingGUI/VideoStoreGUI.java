@@ -5,13 +5,15 @@
  */
 package swingGUI;
 
-import java.util.ArrayList;
+import list.DoubleList;
+import list.DoubleNode;
 /**
  *
  * @author Zephyr
  */
 public class VideoStoreGUI extends javax.swing.JFrame {
-	private ArrayList<VideoTape> tapes;
+	private DoubleList<VideoTape> tapeList;
+	private DoubleNode<VideoTape> currentNode;
 	private int current;
 	/**
 	 * Creates new form VideoStoreGUI
@@ -19,7 +21,8 @@ public class VideoStoreGUI extends javax.swing.JFrame {
 	public VideoStoreGUI() {
 		initComponents();
 		
-		tapes = new ArrayList<VideoTape>();
+		tapeList = new DoubleList<VideoTape>();
+		currentNode = null;
 		current = 0;
 	}
 
@@ -261,7 +264,7 @@ public class VideoStoreGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
-        if(current < tapes.size())
+        if(current < tapeList.size())
 			updateText(current + 1);
     }//GEN-LAST:event_rightButtonActionPerformed
 
@@ -270,12 +273,12 @@ public class VideoStoreGUI extends javax.swing.JFrame {
 		int length = Integer.parseInt(lengthField.getText());
 		boolean lent = isOnLoan.isSelected();
 		
-		tapes.add(new VideoTape(title, length, lent));
-		updateText(tapes.size());
+		tapeList.insert(new VideoTape(title, length, lent));
+		updateText(current + 1);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void endButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endButtonActionPerformed
-		updateText(tapes.size());
+		updateText(tapeList.size());
     }//GEN-LAST:event_endButtonActionPerformed
 
     private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
@@ -288,9 +291,9 @@ public class VideoStoreGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_titleFieldKeyTyped
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        tapes.remove(current - 1);
+        tapeList.remove();
 		
-		if(tapes.isEmpty())
+		if(tapeList.isEmpty())
 			updateText(0);
 		else if(current == 1)
 			updateText(1);		
@@ -315,7 +318,7 @@ public class VideoStoreGUI extends javax.swing.JFrame {
 		int length = Integer.parseInt(lengthField.getText());
 		boolean lent = isOnLoan.isSelected();
 		
-		VideoTape t = tapes.get(current - 1);
+		VideoTape t = tapeList.getCurrent();
 		t.setTitle(title);
 		t.setLength(length);
 		t.setLent(lent);
@@ -329,8 +332,15 @@ public class VideoStoreGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelButtonActionPerformed
 	
 	private void updateText(int c) {
+		try {
+			if(c == 1) tapeList.gotoHead();
+			else if(c == tapeList.size()) tapeList.gotoTail();
+			else if(c > current) tapeList.next();
+			else if(c < current) tapeList.previous();
+		} catch(Exception e) {}
+		
 		current = c;
-		videoNumberLabel.setText(String.format("%d of %d", current, tapes.size()));
+		videoNumberLabel.setText(String.format("%d of %d", current, tapeList.size()));
 		
 		updateButtons();
 		updateFieldsWithInfo();
@@ -339,7 +349,7 @@ public class VideoStoreGUI extends javax.swing.JFrame {
 	
 	private void updateButtons() {
 		boolean leftEnabled = current > 1;
-		boolean rightEnabled = current < tapes.size();
+		boolean rightEnabled = current < tapeList.size();
 		
 		homeButton.setEnabled(leftEnabled);
 		leftButton.setEnabled(leftEnabled);
@@ -363,18 +373,20 @@ public class VideoStoreGUI extends javax.swing.JFrame {
 			valid = false;
 		}
 		
+		if((length > 100 || length <= 0) || text.length() > 5) valid = false;
+		
 		if(valid && !text.equals(""))
 			addButton.setEnabled(true);
 		else
 			addButton.setEnabled(false);
 		
-		if(tapes.size() > 0)
+		if(tapeList.size() > 0)
 			deleteButton.setEnabled(true);
 		else
 			deleteButton.setEnabled(false);
 		
-		if(tapes.size() > 0) {
-			VideoTape t = tapes.get(current - 1);
+		if(tapeList.size() > 0) {
+			VideoTape t = tapeList.getCurrent();
 			if((!t.getTitle().equals(text) || t.getLength() != length || t.isLent() != lent)) {
 				if(valid)
 					applyButton.setEnabled(true);
@@ -398,8 +410,8 @@ public class VideoStoreGUI extends javax.swing.JFrame {
 	}
 	
 	private void updateFieldsWithInfo() {
-		if(!tapes.isEmpty()) {
-			VideoTape tape = tapes.get(current - 1);
+		if(!tapeList.isEmpty()) {
+			VideoTape tape = tapeList.getCurrent();
 			String title = tape.getTitle();
 			int length = tape.getLength();
 			boolean lent = tape.isLent();
