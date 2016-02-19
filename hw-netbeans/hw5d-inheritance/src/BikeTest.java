@@ -5,7 +5,7 @@ public class BikeTest {
 		ArrayList<Bicycle> bikes = new ArrayList<Bicycle>();
 		
 		bikes.add(new Bicycle("brown", 10));
-		bikes.add(new LightBike("cyan", 5, 300000000));
+		bikes.add(new LightBike("cyan", 5, 100000));
 		bikes.add(new WarBike("red", 50, 1000));
 		bikes.add(new Motorcycle("pitch-black", 20, 50));
 		
