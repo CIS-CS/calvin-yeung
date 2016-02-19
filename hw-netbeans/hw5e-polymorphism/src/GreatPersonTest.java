@@ -1,16 +1,25 @@
 import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.File;
 
 public class GreatPersonTest {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
+		Scanner scan = new Scanner(new File("resources/classes.txt"));
+		ArrayList<Class<GreatPerson>> classes = new ArrayList<Class<GreatPerson>>();
 		ArrayList<GreatPerson> gods = new ArrayList<GreatPerson>();
-		gods.add(new Einstein());
-		gods.add(new Pythagoras());
+		
+		while(scan.hasNext())
+			classes.add((Class<GreatPerson>) Class.forName(scan.next()));
+		
+		for(Class<GreatPerson> c : classes)
+			gods.add(c.newInstance());
 		
 		for(GreatPerson bob : gods) {
 			System.out.println(bob.getClass().getName());
 			bob.printAwesomeContributionsMayBeMoreThanOne();
-			bob.printAwesomenessFactor();
-			System.out.println();
+			System.out.println(bob.getAwesomenessFactor() + "\n");
 		}
+		
+		
 	}
 }

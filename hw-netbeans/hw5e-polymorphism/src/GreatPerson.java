@@ -1,4 +1,4 @@
 public abstract class GreatPerson {
 	public abstract void printAwesomeContributionsMayBeMoreThanOne();
-	public abstract void printAwesomenessFactor();
+	public abstract double getAwesomenessFactor();
 }

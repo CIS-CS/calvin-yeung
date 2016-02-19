@@ -6,8 +6,8 @@ public class Pythagoras extends GreatPerson {
 	}
 
 	@Override
-	public void printAwesomenessFactor() {
-		System.out.println("3.14159265");
+	public double getAwesomenessFactor() {
+		return java.lang.Math.PI;
 	}
 	
 }

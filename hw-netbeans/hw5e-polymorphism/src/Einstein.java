@@ -6,8 +6,8 @@ public class Einstein extends GreatPerson {
 	}
 
 	@Override
-	public void printAwesomenessFactor() {
-		System.out.println("Over 9000");
+	public double getAwesomenessFactor() {
+		return 420;
 	}
 	
 }
