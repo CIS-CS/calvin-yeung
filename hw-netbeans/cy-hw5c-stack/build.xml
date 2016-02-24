@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="hw5d-inheritance" default="default" basedir=".">
-    <description>Builds, tests, and runs the project hw5d-inheritance.</description>
+<project name="cy-hw5c-stack" default="default" basedir=".">
+    <description>Builds, tests, and runs the project cy-hw5c-stack.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
@@ -58,7 +58,7 @@
 
     An example of overriding the target for project execution could look like this:
 
-        <target name="run" depends="hw5d-inheritance-impl.jar">
+        <target name="run" depends="cy-hw5c-stack-impl.jar">
             <exec dir="bin" executable="launcher.exe">
                 <arg file="${dist.jar}"/>
             </exec>
