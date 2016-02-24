@@ -12,3 +12,7 @@
 /hw-netbeans/cy-5c-stack/build/
 /hw-netbeans/cy-hw5c-stack/nbproject/private/
 /hw-netbeans/cy-hw5ab-swing-intro/nbproject/private/
+
+*.class
+*.xml
+*.properties
