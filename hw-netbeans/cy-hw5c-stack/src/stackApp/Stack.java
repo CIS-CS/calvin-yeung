@@ -1,5 +1,7 @@
 package stackApp;
 
+import java.util.EmptyStackException;
+
 public class Stack<E> {
 	private Plate<E> top;
 	private int size;
@@ -17,7 +19,7 @@ public class Stack<E> {
 		size++;
 	}
 	
-	public E pop() {
+	public E pop() throws EmptyStackException {
 		E item = null;
 		
 		if(top != null) {
@@ -28,6 +30,8 @@ public class Stack<E> {
 			
 			size--;
 		}
+		
+		else throw new EmptyStackException();
 		
 		return item;
 	}

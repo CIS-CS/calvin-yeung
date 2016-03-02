@@ -10,6 +10,9 @@ public class StackApp {
 		popAlert(stack);
 		popAlert(stack);
 		popAlert(stack);
+		
+		//popAlert(stack);
+		//Uncommenting this will result in EmptyStackException
 	}
 	
 	public static void pushAlert(Stack<String> stack, String s) {
