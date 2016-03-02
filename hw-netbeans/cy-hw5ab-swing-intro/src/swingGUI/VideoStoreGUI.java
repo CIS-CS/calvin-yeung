@@ -6,14 +6,12 @@
 package swingGUI;
 
 import list.DoubleList;
-import list.DoubleNode;
 /**
  *
  * @author Zephyr
  */
 public class VideoStoreGUI extends javax.swing.JFrame {
 	private DoubleList<VideoTape> tapeList;
-	private DoubleNode<VideoTape> currentNode;
 	private int current;
 	/**
 	 * Creates new form VideoStoreGUI
@@ -22,7 +20,6 @@ public class VideoStoreGUI extends javax.swing.JFrame {
 		initComponents();
 		
 		tapeList = new DoubleList<VideoTape>();
-		currentNode = null;
 		current = 0;
 	}
 
