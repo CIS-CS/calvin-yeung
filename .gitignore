@@ -16,3 +16,11 @@
 *.class
 *.xml
 *.properties
+/hw-netbeans/cy-ntu-2_1/nbproject/private/
+/hw-netbeans/cy-ntu-2_1/build/
+/hw-netbeans/cy-ntu-2_2/nbproject/private/
+/hw-netbeans/cy-hw5ab-swing-intro/build/
+/hw-netbeans/cy-hw5c-stack/build/
+/IA/OrbitalSimulator/nbproject/private/
+/IA/OrbitalSimulator/build/
+/IA/OrbitalSimulator/dist/
