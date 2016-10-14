@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="200.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <Label layoutX="111.0" layoutY="26.0" text="DISCLAIMER" />
+      <Label layoutX="15.0" layoutY="55.0" prefHeight="111.0" prefWidth="270.0" text="This simulation assumes that the mass of the larger planet is much greater than the mass of the smaller planet, rendering gravational forces on of the small planet on the large planet negligible." textAlignment="CENTER" wrapText="true" />
+   </children>
+</AnchorPane>
