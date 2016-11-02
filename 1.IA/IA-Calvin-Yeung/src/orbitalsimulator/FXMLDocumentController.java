@@ -11,6 +11,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import orbitalsimulator.data.DataProcessor;
 import orbitalsimulator.graphics.GraphicsContainer;
 import orbitalsimulator.graphics.World;
 
@@ -40,16 +42,17 @@ public class FXMLDocumentController implements Initializable {
 	@FXML
 	private Button disclaimerButton;
 	
-	private final String[] VARIABLES = {"Large Planet Mass", "Distance", "Velocity"};
+	private final String[] VARIABLES = {"Large Planet Mass", "Distance", "Velocity", "Period"};
 	private World simulatorContainer;
 	private GraphicsContainer graphContainer;
-	
+	private DataProcessor dataProcessor;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		initDropdown();
-		initButtons();
+		initActions();
 		
+		dataProcessor = new DataProcessor();
 		simulatorContainer = new World(simulatorCanvas);
 		graphContainer = new GraphicsContainer(graphCanvas);
 		
@@ -59,10 +62,7 @@ public class FXMLDocumentController implements Initializable {
 
 	@FXML
 	private void toggleSimulation(ActionEvent event) {
-	}
-
-	@FXML
-	private void showDisclaimer(ActionEvent event) {
+		
 	}
 	
 	private void initDropdown() {
@@ -72,7 +72,19 @@ public class FXMLDocumentController implements Initializable {
 		dropdown2.getSelectionModel().select(1);
 	}
 	
-	private void initButtons() {
+	private void initActions() {
+		DataUpdateEventHandler dataHandler = new DataUpdateEventHandler(
+				dataProcessor, dropdown1, dropdown2, inputField1, inputField2);
+		
 		disclaimerButton.setOnAction(new DisclaimerEventHandler());
+		dropdown1.setOnInputMethodTextChanged(dataHandler);
+		dropdown2.setOnInputMethodTextChanged(dataHandler);
+		inputField1.setOnInputMethodTextChanged(dataHandler);
+		inputField2.setOnInputMethodTextChanged(dataHandler);
+	}
+
+	@FXML
+	private void speedDragDetected(MouseEvent event) {
+		simulatorContainer.setSimulationSpeed(speedSlider.getValue());
 	}
 }

@@ -12,17 +12,20 @@ public class GraphicsContainer extends AnimationTimer {
 	private long previousTime;
 	private ArrayList<Entity> activeEntities;
 	
+	private double simulationSpeed;
+	
 	public GraphicsContainer(Canvas canvas) {
 		this.activeEntities = new ArrayList<Entity>();
 		this.canvas = canvas;
 		this.previousTime = System.nanoTime();
+		this.simulationSpeed = 1;
 		
 		gc = canvas.getGraphicsContext2D();
 	}
 	
 	@Override
 	public void handle(long currentTime) {
-		double delta = (currentTime - previousTime) * 1e-9;
+		double delta = 0.17 * simulationSpeed;
 		previousTime = currentTime;
 		
 		render(gc);
@@ -71,5 +74,9 @@ public class GraphicsContainer extends AnimationTimer {
 	
 	public double getHeight() {
 		return canvas.getHeight();
+	}
+	
+	public void setSimulationSpeed(double simulationSpeed) {
+		this.simulationSpeed = simulationSpeed;
 	}
 }

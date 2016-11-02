@@ -21,7 +21,7 @@ public class DisclaimerEventHandler implements EventHandler {
 			stage.show();
 		}
 		
-		catch(Exception e) {}
+		catch(Exception e) {System.err.printf("Error: %s\n", e);}
 	}
 	
 }
