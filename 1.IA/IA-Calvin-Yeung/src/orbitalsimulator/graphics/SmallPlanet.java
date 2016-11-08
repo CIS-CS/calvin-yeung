@@ -7,14 +7,14 @@ import javafx.scene.paint.Color;
 public class SmallPlanet extends Entity {
 	private double centerX, centerY, radius, orbitalRadius, angle, angularVelocity;
 	
-	public SmallPlanet(double centerX, double centerY) {
+	public SmallPlanet(double centerX, double centerY, double orbitalRadius, double angularVelocity) {
 		this.centerX = centerX;
 		this.centerY = centerY;
 		
-		this.orbitalRadius = 150;
+		this.orbitalRadius = orbitalRadius;
+		this.angularVelocity = angularVelocity;
 		this.radius = 7;
 		this.angle = 0;
-		this.angularVelocity = PI / 32;
 	}
 
 	@Override

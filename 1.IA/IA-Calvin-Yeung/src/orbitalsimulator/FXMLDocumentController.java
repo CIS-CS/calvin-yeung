@@ -24,10 +24,6 @@ public class FXMLDocumentController implements Initializable {
 	@FXML
 	private Label statisticsLabel;
 	@FXML
-	private TextField inputField1;
-	@FXML
-	private TextField inputField2;
-	@FXML
 	private TextField smallMassField;
 	@FXML
 	private Slider speedSlider;
@@ -36,25 +32,29 @@ public class FXMLDocumentController implements Initializable {
 	@FXML
 	private Canvas graphCanvas;
 	@FXML
-	private ChoiceBox<String> dropdown1;
-	@FXML
-	private ChoiceBox<String> dropdown2;
-	@FXML
 	private Button disclaimerButton;
+	@FXML
+	private TextField largeMassField;
+	@FXML
+	private ChoiceBox<String> dropdown;
+	@FXML
+	private TextField inputField;
 	
-	private final String[] VARIABLES = {"Large Planet Mass", "Distance", "Velocity", "Period"};
+	private final String[] VARIABLES = {"Distance", "Velocity", "Period"};
 	private World simulatorContainer;
 	private GraphicsContainer graphContainer;
 	private DataProcessor dataProcessor;
+	@FXML
+	private Button updateChangeButton;
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		dataProcessor = new DataProcessor(simulatorContainer);
+		simulatorContainer = new World(simulatorCanvas, dataProcessor);
+		graphContainer = new GraphicsContainer(graphCanvas);
+		
 		initDropdown();
 		initActions();
-		
-		dataProcessor = new DataProcessor();
-		simulatorContainer = new World(simulatorCanvas);
-		graphContainer = new GraphicsContainer(graphCanvas);
 		
 		simulatorContainer.start();
 		graphContainer.start();
@@ -62,25 +62,20 @@ public class FXMLDocumentController implements Initializable {
 
 	@FXML
 	private void toggleSimulation(ActionEvent event) {
-		
+		simulatorContainer.setRunning(!simulatorContainer.isRunning());
 	}
 	
 	private void initDropdown() {
-		dropdown1.getItems().addAll(VARIABLES);
-		dropdown2.getItems().addAll(VARIABLES);
-		dropdown1.getSelectionModel().select(0);
-		dropdown2.getSelectionModel().select(1);
+		dropdown.getItems().addAll(VARIABLES);
+		dropdown.getSelectionModel().select(0);
 	}
 	
 	private void initActions() {
 		DataUpdateEventHandler dataHandler = new DataUpdateEventHandler(
-				dataProcessor, dropdown1, dropdown2, inputField1, inputField2);
+				dataProcessor, dropdown, inputField, largeMassField);
 		
 		disclaimerButton.setOnAction(new DisclaimerEventHandler());
-		dropdown1.setOnInputMethodTextChanged(dataHandler);
-		dropdown2.setOnInputMethodTextChanged(dataHandler);
-		inputField1.setOnInputMethodTextChanged(dataHandler);
-		inputField2.setOnInputMethodTextChanged(dataHandler);
+		updateChangeButton.setOnAction(dataHandler);
 	}
 
 	@FXML

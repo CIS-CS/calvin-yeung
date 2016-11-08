@@ -1,6 +1,7 @@
 package orbitalsimulator.graphics;
 
 import javafx.scene.canvas.Canvas;
+import orbitalsimulator.data.DataProcessor;
 
 public class World extends GraphicsContainer {
 	final private double X_MID = getWidth() / 2;
@@ -8,15 +9,20 @@ public class World extends GraphicsContainer {
 	
 	private LargePlanet largePlanet;
 	private SmallPlanet smallPlanet;
+	private DataProcessor dataProcessor;
 	
-	public World(Canvas canvas) {
+	public World(Canvas canvas, DataProcessor dp) {
 		super(canvas);
+		dataProcessor = dp;
 		
-		double orbitalRadius = 150;
+		init();
+	}
+	
+	public void init() {
 		largePlanet = new LargePlanet();
-		smallPlanet = new SmallPlanet(X_MID, Y_MID);
+		smallPlanet = new SmallPlanet(X_MID, Y_MID, dataProcessor.getDistance(), dataProcessor.getAngularVelocity());
 		
 		addEntity(largePlanet, X_MID, Y_MID);
-		addEntity(smallPlanet, X_MID + orbitalRadius, Y_MID);
+		addEntity(smallPlanet, X_MID + dataProcessor.getDistance(), Y_MID);
 	}
 }
