@@ -12,8 +12,9 @@ public class DataProcessor {
 		this.world = world;
 	}
 	
+	// updates data given two inputs
 	public void updateData(String selectedItem, double value, double mass) {
-		this.mass = mass;
+		this.mass = mass*2*10e30;
 		
 		if(selectedItem.equals("Distance")) {
 			this.distance = value;
@@ -34,7 +35,8 @@ public class DataProcessor {
 		this.velocity = this.getAngularVelocity() * this.getDistance();
 		this.acceleration = this.getVelocity() * this.getAngularVelocity();
 		this.force = this.getAcceleration() * this.getMass();
-		
+		System.out.println(this.distance);
+		System.out.println(this.getAngularVelocity());
 		world.init();
 	}
 

@@ -22,7 +22,6 @@ public class DataUpdateEventHandler implements EventHandler {
 	@Override
 	public void handle(Event event) {
 		String selectedItem = dropdown.getSelectionModel().getSelectedItem();
-		System.out.println("hi");
 		// validate later
 		double value = Double.valueOf(inputField.getText());
 		double mass = Double.valueOf(largeMassField.getText());

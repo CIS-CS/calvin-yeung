@@ -11,6 +11,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import orbitalsimulator.data.DataProcessor;
 import orbitalsimulator.graphics.GraphicsContainer;
@@ -46,23 +47,35 @@ public class FXMLDocumentController implements Initializable {
 	private DataProcessor dataProcessor;
 	@FXML
 	private Button updateChangeButton;
+	@FXML
+	private Label unitLabel;
+	@FXML
+	private Label speedLabel;
 	
+	// initialize files
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		simulatorContainer = new World(simulatorCanvas);
 		dataProcessor = new DataProcessor(simulatorContainer);
-		simulatorContainer = new World(simulatorCanvas, dataProcessor);
 		graphContainer = new GraphicsContainer(graphCanvas);
+		
+		simulatorContainer.setDataProcessor(dataProcessor);
+		simulatorContainer.init();
 		
 		initDropdown();
 		initActions();
 		
+		// start rendering of simulation and graph
 		simulatorContainer.start();
 		graphContainer.start();
 	}	
-
+	
+	// toggles run state of simulation
 	@FXML
 	private void toggleSimulation(ActionEvent event) {
 		simulatorContainer.setRunning(!simulatorContainer.isRunning());
+		toggleSimulationButton.setText(
+			simulatorContainer.isRunning() ? "Pause Simulation" : "Start Simulation");
 	}
 	
 	private void initDropdown() {
@@ -81,5 +94,18 @@ public class FXMLDocumentController implements Initializable {
 	@FXML
 	private void speedDragDetected(MouseEvent event) {
 		simulatorContainer.setSimulationSpeed(speedSlider.getValue());
+		speedLabel.setText(String.format("%.1f yrs/s", speedSlider.getValue()));
+	}
+
+	@FXML
+	private void updatePressed(ActionEvent event) {
+		String selectedItem = dropdown.getSelectionModel().getSelectedItem();
+		double value = Double.valueOf(inputField.getText());
+		double mass = Double.valueOf(largeMassField.getText());
+		
+		dataProcessor.updateData(selectedItem, value, mass);
+		
+		simulatorContainer.setRunning(false);
+		toggleSimulationButton.setText("Start Simulation");
 	}
 }

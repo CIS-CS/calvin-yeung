@@ -11,18 +11,21 @@ public class World extends GraphicsContainer {
 	private SmallPlanet smallPlanet;
 	private DataProcessor dataProcessor;
 	
-	public World(Canvas canvas, DataProcessor dp) {
+	public World(Canvas canvas) {
 		super(canvas);
-		dataProcessor = dp;
-		
-		init();
 	}
 	
 	public void init() {
+		removeAllEntities();
+		
 		largePlanet = new LargePlanet();
 		smallPlanet = new SmallPlanet(X_MID, Y_MID, dataProcessor.getDistance(), dataProcessor.getAngularVelocity());
 		
 		addEntity(largePlanet, X_MID, Y_MID);
 		addEntity(smallPlanet, X_MID + dataProcessor.getDistance(), Y_MID);
+	}
+	
+	public void setDataProcessor(DataProcessor dp) {
+		this.dataProcessor = dp;
 	}
 }
