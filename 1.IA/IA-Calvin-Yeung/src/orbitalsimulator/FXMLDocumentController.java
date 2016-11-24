@@ -84,11 +84,7 @@ public class FXMLDocumentController implements Initializable {
 	}
 	
 	private void initActions() {
-		DataUpdateEventHandler dataHandler = new DataUpdateEventHandler(
-				dataProcessor, dropdown, inputField, largeMassField);
-		
 		disclaimerButton.setOnAction(new DisclaimerEventHandler());
-		updateChangeButton.setOnAction(dataHandler);
 	}
 
 	@FXML
