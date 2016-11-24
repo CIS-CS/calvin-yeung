@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import orbitalsimulator.data.DataProcessor;
+import orbitalsimulator.graphics.GraphContainer;
 import orbitalsimulator.graphics.GraphicsContainer;
 import orbitalsimulator.graphics.World;
 
@@ -57,10 +58,13 @@ public class FXMLDocumentController implements Initializable {
 	public void initialize(URL url, ResourceBundle rb) {
 		simulatorContainer = new World(simulatorCanvas);
 		dataProcessor = new DataProcessor(simulatorContainer);
-		graphContainer = new GraphicsContainer(graphCanvas);
+		graphContainer = new GraphContainer(graphCanvas);
 		
 		simulatorContainer.setDataProcessor(dataProcessor);
 		simulatorContainer.init();
+		
+		graphContainer.setDataProcessor(dataProcessor);
+		graphContainer.init();
 		
 		initDropdown();
 		initActions();

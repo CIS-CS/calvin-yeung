@@ -9,7 +9,6 @@ public class World extends GraphicsContainer {
 	
 	private LargePlanet largePlanet;
 	private SmallPlanet smallPlanet;
-	private DataProcessor dataProcessor;
 	
 	public World(Canvas canvas) {
 		super(canvas);
@@ -19,13 +18,9 @@ public class World extends GraphicsContainer {
 		removeAllEntities();
 		
 		largePlanet = new LargePlanet();
-		smallPlanet = new SmallPlanet(X_MID, Y_MID, dataProcessor.getDistance(), dataProcessor.getAngularVelocity());
+		smallPlanet = new SmallPlanet(X_MID, Y_MID, getDataProcessor().getDistance(), getDataProcessor().getAngularVelocity());
 		
 		addEntity(largePlanet, X_MID, Y_MID);
-		addEntity(smallPlanet, X_MID + dataProcessor.getDistance(), Y_MID);
-	}
-	
-	public void setDataProcessor(DataProcessor dp) {
-		this.dataProcessor = dp;
+		addEntity(smallPlanet, X_MID + getDataProcessor().getDistance(), Y_MID);
 	}
 }

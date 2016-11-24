@@ -5,13 +5,15 @@ import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
+import orbitalsimulator.data.DataProcessor;
 
-public class GraphicsContainer extends AnimationTimer {
+public abstract class GraphicsContainer extends AnimationTimer {
 	private Canvas canvas;
 	private GraphicsContext gc;
 	private long previousTime;
 	private ArrayList<Entity> activeEntities;
 	private boolean isRunning;
+	private DataProcessor dataProcessor;
 	
 	private double simulationSpeed;
 	
@@ -83,6 +85,10 @@ public class GraphicsContainer extends AnimationTimer {
 		return this.isRunning;
 	}
 	
+	public DataProcessor getDataProcessor() {
+		return dataProcessor;
+	}
+	
 	public void setSimulationSpeed(double simulationSpeed) {
 		this.simulationSpeed = simulationSpeed;
 	}
@@ -90,4 +96,10 @@ public class GraphicsContainer extends AnimationTimer {
 	public void setRunning(boolean isRunning) {
 		this.isRunning = isRunning;
 	}
+	
+	public void setDataProcessor(DataProcessor dp) {
+		this.dataProcessor = dp;
+	}
+	
+	abstract public void init();
 }

@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/zephyr/Desktop/zephyres/GitHub/calvin-yeung/1.IA/IA-Calvin-Yeung/src/orbitalsimulator/data/DataProcessor.java</file>
-            <file>file:/Users/zephyr/Desktop/zephyres/GitHub/calvin-yeung/1.IA/IA-Calvin-Yeung/src/orbitalsimulator/FXMLDocumentController.java</file>
-            <file>file:/Users/zephyr/Desktop/zephyres/GitHub/calvin-yeung/1.IA/IA-Calvin-Yeung/src/orbitalsimulator/DataUpdateEventHandler.java</file>
-            <file>file:/Users/zephyr/Desktop/zephyres/GitHub/calvin-yeung/1.IA/IA-Calvin-Yeung/src/orbitalsimulator/graphics/World.java</file>
+            <file>file:/C:/Users/calvin/Documents/GitHub/calvin-yeung/1.IA/IA-Calvin-Yeung/src/orbitalsimulator/FXMLDocumentController.java</file>
+            <file>file:/C:/Users/calvin/Documents/GitHub/calvin-yeung/1.IA/IA-Calvin-Yeung/src/orbitalsimulator/graphics/Entity.java</file>
+            <file>file:/C:/Users/calvin/Documents/GitHub/calvin-yeung/1.IA/IA-Calvin-Yeung/src/orbitalsimulator/graphics/EnergyGraph.java</file>
+            <file>file:/C:/Users/calvin/Documents/GitHub/calvin-yeung/1.IA/IA-Calvin-Yeung/src/orbitalsimulator/graphics/GraphContainer.java</file>
+            <file>file:/C:/Users/calvin/Documents/GitHub/calvin-yeung/1.IA/IA-Calvin-Yeung/src/orbitalsimulator/graphics/GraphicsContainer.java</file>
         </group>
     </open-files>
 </project-private>
