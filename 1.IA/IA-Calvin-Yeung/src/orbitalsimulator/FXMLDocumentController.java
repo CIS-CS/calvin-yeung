@@ -104,8 +104,7 @@ public class FXMLDocumentController implements Initializable {
 		double mass = Double.valueOf(largeMassField.getText());
 		
 		dataProcessor.updateData(selectedItem, value, mass);
-		
-		simulatorContainer.setRunning(false);
+		//simulatorContainer.setRunning(false);
 		toggleSimulationButton.setText("Start Simulation");
 	}
 }

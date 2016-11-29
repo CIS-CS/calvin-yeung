@@ -18,9 +18,9 @@ public class World extends GraphicsContainer {
 		removeAllEntities();
 		
 		largePlanet = new LargePlanet();
-		smallPlanet = new SmallPlanet(X_MID, Y_MID, getDataProcessor().getDistance(), getDataProcessor().getAngularVelocity());
+		smallPlanet = new SmallPlanet(X_MID, Y_MID, getDataProcessor().getDistance() * 150, getDataProcessor().getAngularVelocity());
 		
 		addEntity(largePlanet, X_MID, Y_MID);
-		addEntity(smallPlanet, X_MID + getDataProcessor().getDistance(), Y_MID);
+		addEntity(smallPlanet, X_MID + getDataProcessor().getDistance() * 150, Y_MID);
 	}
 }

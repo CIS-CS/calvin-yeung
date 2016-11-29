@@ -27,7 +27,6 @@ public class SmallPlanet extends Entity {
 	public void update(double delta) {
 		angle += angularVelocity * delta;
 		angle %= 2*PI;
-		
 		setX(centerX + orbitalRadius * cos(angle));
 		setY(centerY + orbitalRadius * sin(angle));
 	}

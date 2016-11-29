@@ -13,12 +13,12 @@ public class DataProcessor {
 	}
 	
 	// updates data given two inputs
-	public void updateData(String selectedItem, double value, double mass) {
-		this.mass = mass*2*10e30;
+	public void updateData(String selectedItem, double value, double m) {
+		this.mass = m*2*10e30;
 		
 		if(selectedItem.equals("Distance")) {
 			this.distance = value;
-			this.angularVelocity = sqrt(G*mass/pow(getDistance(), 3));
+			this.angularVelocity = sqrt(G*mass/pow((getDistance()*1.5e12), 3));
 		}
 		
 		if(selectedItem.equals("Velocity")) {
@@ -35,8 +35,7 @@ public class DataProcessor {
 		this.velocity = this.getAngularVelocity() * this.getDistance();
 		this.acceleration = this.getVelocity() * this.getAngularVelocity();
 		this.force = this.getAcceleration() * this.getMass();
-		System.out.println(this.distance);
-		System.out.println(this.getAngularVelocity());
+		
 		world.init();
 	}
 
