@@ -6,8 +6,10 @@ import java.lang.Math;
 
 public class EnergyGraph extends Entity {
 	
-	private final double G = 6.67e-11;
-	private double mass, distance;
+	private final double G = 39.4336;
+	private final int Y_OFFSET = 165;
+	private final int X_OFFSET = 10;
+	private double mass, distance, xScale;
 	
 	public void init() {
 		
@@ -21,14 +23,21 @@ public class EnergyGraph extends Entity {
 		
 		mass = this.getContainer().getDataProcessor().getMass();
 		distance = this.getContainer().getDataProcessor().getDistance();
+		xScale = 2.0*550/(5*distance);
 		
 		int step = 5;
-		for(int i = 10; i < 550; i += step) {
+		for(int i = 5; i < 550; i += step) {
 			gc.setStroke(Color.CORNFLOWERBLUE);
-			gc.strokeLine(i + 10, 165 - f1(mass, i), i + 10 + step, 165 - f1(mass, i+step));
+			gc.strokeLine(i + X_OFFSET, Y_OFFSET - f1(mass, i), i + step + X_OFFSET, Y_OFFSET - f1(mass, (i+step)));
 			gc.setStroke(Color.PALEGOLDENROD);
-			gc.strokeLine(i + 10, 165 - f2(mass, i), i + 10 + step, 165 - f2(mass, i+step));
+			gc.strokeLine(i + X_OFFSET, Y_OFFSET - f2(mass, i), i + step + X_OFFSET, Y_OFFSET - f2(mass, i+step));
 		}
+		
+		double r = distance * xScale;
+		gc.setStroke(Color.GRAY);
+		gc.strokeLine(r, Y_OFFSET - f1(mass, r), r,  Y_OFFSET - f2(mass, r));
+		gc.strokeLine(X_OFFSET, Y_OFFSET - f1(mass, r), r, Y_OFFSET - f1(mass, r));
+		gc.strokeLine(X_OFFSET, Y_OFFSET - f2(mass, r), r, Y_OFFSET - f2(mass, r));
 	}
 
 	@Override
@@ -37,13 +46,13 @@ public class EnergyGraph extends Entity {
 	}
 	
 	private double f1(double m, double r) {
-		double val = -Math.sqrt(G*m/(r*1.5e11))/ 100;
+		r /= xScale;
+		double val = -Math.sqrt(G*m/r) * 10;
 		return val;
 	}
 	
 	private double f2(double m, double r) {
-		double val = 0.5*Math.sqrt(G*m/(r*1.5e11))/ 100;
-		return val;
+		return -f1(m, r) / 2;
 	}
 	
 }

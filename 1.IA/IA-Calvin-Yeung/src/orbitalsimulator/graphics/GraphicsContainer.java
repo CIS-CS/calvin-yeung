@@ -29,12 +29,12 @@ public abstract class GraphicsContainer extends AnimationTimer {
 	
 	@Override
 	public void handle(long currentTime) {
-		double delta = 0.17 * simulationSpeed * (365 * 24 * 3600);
+		double delta = (currentTime - previousTime) * 10e-10;
 		previousTime = currentTime;
 		
 		render(gc);
 		if(isRunning)
-			update(delta);
+			update(delta * simulationSpeed);
 	}
 	
 	public void render(GraphicsContext gc) {

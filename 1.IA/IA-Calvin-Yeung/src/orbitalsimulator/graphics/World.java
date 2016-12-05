@@ -22,5 +22,6 @@ public class World extends GraphicsContainer {
 		
 		addEntity(largePlanet, X_MID, Y_MID);
 		addEntity(smallPlanet, X_MID + getDataProcessor().getDistance() * 150, Y_MID);
+		this.setRunning(false);
 	}
 }
