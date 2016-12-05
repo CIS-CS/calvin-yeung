@@ -11,7 +11,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
-import javafx.scene.input.DragEvent;
 import javafx.scene.input.MouseEvent;
 import orbitalsimulator.data.DataProcessor;
 import orbitalsimulator.graphics.GraphContainer;
@@ -20,7 +19,6 @@ import orbitalsimulator.graphics.World;
 
 public class FXMLDocumentController implements Initializable {
 	
-	private Label label;
 	@FXML
 	private Button toggleSimulationButton;
 	@FXML
@@ -38,24 +36,26 @@ public class FXMLDocumentController implements Initializable {
 	@FXML
 	private TextField largeMassField;
 	@FXML
-	private ChoiceBox<String> dropdown;
-	@FXML
-	private TextField inputField;
-	
-	private final String[] VARIABLES = {"Distance", "Velocity", "Period"};
-	private World simulatorContainer;
-	private GraphicsContainer graphContainer;
-	private DataProcessor dataProcessor;
-	@FXML
 	private Button updateChangeButton;
 	@FXML
 	private Label unitLabel;
 	@FXML
 	private Label speedLabel;
+	@FXML
+	private TextField distanceField;
 	
-	// initialize files
+	private World simulatorContainer;
+	private GraphicsContainer graphContainer;
+	private DataProcessor dataProcessor;
+	
+	/**
+	 * Initializes fields and runs graph and simulation rendering.
+	 * @param url
+	 * @param rb 
+	 */
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		// init fields
 		simulatorContainer = new World(simulatorCanvas);
 		dataProcessor = new DataProcessor(simulatorContainer);
 		graphContainer = new GraphContainer(graphCanvas);
@@ -66,45 +66,49 @@ public class FXMLDocumentController implements Initializable {
 		graphContainer.setDataProcessor(dataProcessor);
 		graphContainer.init();
 		
-		initDropdown();
-		initActions();
-		
 		// start rendering of simulation and graph
 		simulatorContainer.start();
 		graphContainer.start();
+		
+		// set action for disclaimer button
+		disclaimerButton.setOnAction(new DisclaimerEventHandler());
+		
+		// update visuals to match initial data
+		updatePressed(null);
 	}	
 	
-	// toggles run state of simulation
+	/**
+	 * Toggles run state of simulation.
+	 * @param event 
+	 */
 	@FXML
 	private void toggleSimulation(ActionEvent event) {
 		simulatorContainer.setRunning(!simulatorContainer.isRunning());
 		toggleSimulationButton.setText(
 			simulatorContainer.isRunning() ? "Pause Simulation" : "Start Simulation");
 	}
-	
-	private void initDropdown() {
-		dropdown.getItems().addAll(VARIABLES);
-		dropdown.getSelectionModel().select(0);
-	}
-	
-	private void initActions() {
-		disclaimerButton.setOnAction(new DisclaimerEventHandler());
-	}
 
+	/**
+	 * Updates data when simulation speed slider is altered.
+	 * @param event 
+	 */
 	@FXML
 	private void speedDragDetected(MouseEvent event) {
 		simulatorContainer.setSimulationSpeed(speedSlider.getValue());
 		speedLabel.setText(String.format("%.1f yrs/s", speedSlider.getValue()));
 	}
 
+	/**
+	 * Updates data to match user input.
+	 * @param event 
+	 */
 	@FXML
 	private void updatePressed(ActionEvent event) {
-		String selectedItem = dropdown.getSelectionModel().getSelectedItem();
-		double value = Double.valueOf(inputField.getText());
+		double distance = Double.valueOf(distanceField.getText());
 		double mass = Double.valueOf(largeMassField.getText());
 		
-		dataProcessor.updateData(selectedItem, value, mass);
-		//simulatorContainer.setRunning(false);
+		dataProcessor.updateData(mass, distance);
 		toggleSimulationButton.setText("Start Simulation");
+		statisticsLabel.setText(dataProcessor.toString());
 	}
 }
