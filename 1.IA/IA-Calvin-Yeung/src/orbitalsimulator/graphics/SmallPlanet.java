@@ -19,6 +19,11 @@ public class SmallPlanet extends Entity {
 
 	@Override
 	public void render(GraphicsContext gc) {
+		// draw orbital path
+		gc.setStroke(Color.LIGHTGREY);
+		gc.strokeOval(centerX - orbitalRadius, centerY - orbitalRadius, orbitalRadius*2, orbitalRadius*2);
+		
+		// draw planet
 		gc.setFill(Color.CORNFLOWERBLUE);
 		gc.fillOval(getX() - RADIUS, getY() - RADIUS, RADIUS*2, RADIUS*2);
 	}

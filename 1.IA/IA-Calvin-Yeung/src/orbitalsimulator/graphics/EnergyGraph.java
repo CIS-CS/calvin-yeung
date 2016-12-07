@@ -17,14 +17,22 @@ public class EnergyGraph extends Entity {
 	
 	@Override
 	public void render(GraphicsContext gc) {
-		gc.setStroke(Color.WHITE);
-		gc.strokeLine(10, 10, 10, 320);
-		gc.strokeLine(5, 165, 560, 165);
 		
 		mass = this.getContainer().getDataProcessor().getMass();
 		distance = this.getContainer().getDataProcessor().getDistance();
 		xScale = 2.0*550/(5*distance);
 		
+		// calculate values
+		double r = distance * xScale;
+		double pe = f1(mass, r);
+		double ke = f2(mass, r);
+		
+		// draw axis
+		gc.setStroke(Color.WHITE);
+		gc.strokeLine(10, 10, 10, 320);
+		gc.strokeLine(5, 165, 560, 165);
+		
+		// draw curve
 		int step = 5;
 		for(int i = 5; i < 550; i += step) {
 			gc.setStroke(Color.CORNFLOWERBLUE);
@@ -33,11 +41,19 @@ public class EnergyGraph extends Entity {
 			gc.strokeLine(i + X_OFFSET, Y_OFFSET - f2(mass, i), i + step + X_OFFSET, Y_OFFSET - f2(mass, i+step));
 		}
 		
-		double r = distance * xScale;
+		// draw indicator lines
 		gc.setStroke(Color.GRAY);
-		gc.strokeLine(r, Y_OFFSET - f1(mass, r), r,  Y_OFFSET - f2(mass, r));
-		gc.strokeLine(X_OFFSET, Y_OFFSET - f1(mass, r), r, Y_OFFSET - f1(mass, r));
-		gc.strokeLine(X_OFFSET, Y_OFFSET - f2(mass, r), r, Y_OFFSET - f2(mass, r));
+		gc.strokeLine(r, Y_OFFSET - pe, r,  Y_OFFSET - ke);
+		gc.strokeLine(X_OFFSET, Y_OFFSET - pe, r, Y_OFFSET - pe);
+		gc.strokeLine(X_OFFSET, Y_OFFSET - ke, r, Y_OFFSET - ke);
+		
+		// draw labels
+		gc.setFill(Color.WHITE);
+		gc.fillText(String.format("%.2f AU", distance), r + 5, Y_OFFSET + 15);
+		gc.fillText(String.format("PE = %.2f", pe), X_OFFSET + 5, Y_OFFSET - pe - 5);
+		gc.fillText(String.format("KE = %.2f", ke), X_OFFSET + 5, Y_OFFSET - ke - 5);
+		
+		// TODO: Y_SCALE, Zoom feature
 	}
 
 	@Override
