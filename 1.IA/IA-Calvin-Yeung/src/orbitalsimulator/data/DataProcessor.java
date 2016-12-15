@@ -14,16 +14,15 @@ public class DataProcessor {
 	}
 	
 	// updates data given two inputs
-	public void updateData(double mass, double distance) {
+	public void updateData(double mass, double smallMass, double distance) {
 		this.mass = mass;
 		this.distance = distance;
 		
 		this.angularVelocity = sqrt(GRAV_CONST*getMass()/pow((getDistance()), 3));
-		System.out.println(this.angularVelocity);
 		this.period = 2*PI / this.getAngularVelocity();
 		this.velocity = this.getAngularVelocity() * this.getDistance();
 		this.acceleration = this.getVelocity() * this.getAngularVelocity();
-		this.force = this.getAcceleration() * this.getMass();
+		this.force = this.getAcceleration() * smallMass * 3.002*10e-6;
 		
 		world.init();
 	}
@@ -62,8 +61,8 @@ public class DataProcessor {
 				"Distance to planet: %.2f AU\n" +
 				"Orbital period: %.2f years\n" +
 				"Speed: %.2f AU/year\n" +
-				"Gravitational force: %.2f×10²⁶ N",
-				getMass(), getDistance(), getPeriod(), getVelocity(), getForce() * 2.99
+				"Gravitational force: %.2f×10²² N",
+				getMass(), getDistance(), getPeriod(), getVelocity(), getForce() * 2.99*10e2
 		);
 	}
 }

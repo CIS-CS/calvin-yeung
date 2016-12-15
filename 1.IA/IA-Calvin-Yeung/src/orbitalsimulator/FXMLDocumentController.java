@@ -106,8 +106,9 @@ public class FXMLDocumentController implements Initializable {
 	private void updatePressed(ActionEvent event) {
 		double distance = Double.valueOf(distanceField.getText());
 		double mass = Double.valueOf(largeMassField.getText());
+		double smallMass = Double.valueOf(smallMassField.getText());
 		
-		dataProcessor.updateData(mass, distance);
+		dataProcessor.updateData(mass, smallMass, distance);
 		toggleSimulationButton.setText("Start Simulation");
 		statisticsLabel.setText(dataProcessor.toString());
 	}

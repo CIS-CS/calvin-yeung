@@ -17,11 +17,12 @@ public class World extends GraphicsContainer {
 	public void init() {
 		removeAllEntities();
 		
+		double dist = getDataProcessor().getDistance() * 150 * getZoom();
 		largePlanet = new LargePlanet();
-		smallPlanet = new SmallPlanet(X_MID, Y_MID, getDataProcessor().getDistance() * 150, getDataProcessor().getAngularVelocity());
+		smallPlanet = new SmallPlanet(X_MID, Y_MID, dist, getDataProcessor().getAngularVelocity());
 		
 		addEntity(largePlanet, X_MID, Y_MID);
-		addEntity(smallPlanet, X_MID + getDataProcessor().getDistance() * 150, Y_MID);
+		addEntity(smallPlanet, X_MID + dist, Y_MID);
 		this.setRunning(false);
 	}
 }

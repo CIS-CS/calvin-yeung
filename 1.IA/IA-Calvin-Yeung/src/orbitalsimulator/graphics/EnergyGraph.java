@@ -9,7 +9,7 @@ public class EnergyGraph extends Entity {
 	private final double G = 39.4336;
 	private final int Y_OFFSET = 165;
 	private final int X_OFFSET = 10;
-	private double mass, distance, xScale;
+	private double mass, distance, xScale, yScale;
 	
 	public void init() {
 		
@@ -20,12 +20,15 @@ public class EnergyGraph extends Entity {
 		
 		mass = this.getContainer().getDataProcessor().getMass();
 		distance = this.getContainer().getDataProcessor().getDistance();
-		xScale = 2.0*550/(5*distance);
 		
 		// calculate values
+		xScale = 2.0*550/(5*distance);
+		
 		double r = distance * xScale;
 		double pe = f1(mass, r);
 		double ke = f2(mass, r);
+		
+		yScale = -2.0*330/(5*pe);
 		
 		// draw axis
 		gc.setStroke(Color.WHITE);
@@ -36,22 +39,22 @@ public class EnergyGraph extends Entity {
 		int step = 5;
 		for(int i = 5; i < 550; i += step) {
 			gc.setStroke(Color.CORNFLOWERBLUE);
-			gc.strokeLine(i + X_OFFSET, Y_OFFSET - f1(mass, i), i + step + X_OFFSET, Y_OFFSET - f1(mass, (i+step)));
+			gc.strokeLine(i + X_OFFSET, Y_OFFSET - f1(mass, i) * yScale, i + step + X_OFFSET, Y_OFFSET - f1(mass, (i+step)) * yScale);
 			gc.setStroke(Color.PALEGOLDENROD);
-			gc.strokeLine(i + X_OFFSET, Y_OFFSET - f2(mass, i), i + step + X_OFFSET, Y_OFFSET - f2(mass, i+step));
+			gc.strokeLine(i + X_OFFSET, Y_OFFSET - f2(mass, i) * yScale, i + step + X_OFFSET, Y_OFFSET - f2(mass, i+step) * yScale);
 		}
 		
 		// draw indicator lines
 		gc.setStroke(Color.GRAY);
-		gc.strokeLine(r, Y_OFFSET - pe, r,  Y_OFFSET - ke);
-		gc.strokeLine(X_OFFSET, Y_OFFSET - pe, r, Y_OFFSET - pe);
-		gc.strokeLine(X_OFFSET, Y_OFFSET - ke, r, Y_OFFSET - ke);
+		gc.strokeLine(r, Y_OFFSET - pe * yScale, r,  Y_OFFSET - ke * yScale);
+		gc.strokeLine(X_OFFSET, Y_OFFSET - pe * yScale, r, Y_OFFSET - pe * yScale);
+		gc.strokeLine(X_OFFSET, Y_OFFSET - ke * yScale, r, Y_OFFSET - ke * yScale);
 		
 		// draw labels
 		gc.setFill(Color.WHITE);
 		gc.fillText(String.format("%.2f AU", distance), r + 5, Y_OFFSET + 15);
-		gc.fillText(String.format("PE = %.2f", pe), X_OFFSET + 5, Y_OFFSET - pe - 5);
-		gc.fillText(String.format("KE = %.2f", ke), X_OFFSET + 5, Y_OFFSET - ke - 5);
+		gc.fillText(String.format("PE = %.2f", pe), X_OFFSET + 5, Y_OFFSET - pe * yScale - 5);
+		gc.fillText(String.format("KE = %.2f", ke), X_OFFSET + 5, Y_OFFSET - ke * yScale - 5);
 		
 		// TODO: Y_SCALE, Zoom feature
 	}
@@ -63,8 +66,7 @@ public class EnergyGraph extends Entity {
 	
 	private double f1(double m, double r) {
 		r /= xScale;
-		double val = -Math.sqrt(G*m/r) * 10;
-		return val;
+		return -Math.sqrt(G*m/r);
 	}
 	
 	private double f2(double m, double r) {

@@ -14,6 +14,7 @@ public abstract class GraphicsContainer extends AnimationTimer {
 	private ArrayList<Entity> activeEntities;
 	private boolean isRunning;
 	private DataProcessor dataProcessor;
+	private double zoom;
 	
 	private double simulationSpeed;
 	
@@ -23,6 +24,7 @@ public abstract class GraphicsContainer extends AnimationTimer {
 		this.previousTime = System.nanoTime();
 		this.simulationSpeed = 1;
 		this.isRunning = false;
+		this.zoom = 5;
 		
 		gc = canvas.getGraphicsContext2D();
 	}
@@ -89,6 +91,10 @@ public abstract class GraphicsContainer extends AnimationTimer {
 		return dataProcessor;
 	}
 	
+	public double getZoom() {
+		return zoom / 10;
+	}
+	
 	public void setSimulationSpeed(double simulationSpeed) {
 		this.simulationSpeed = simulationSpeed;
 	}
@@ -99,6 +105,10 @@ public abstract class GraphicsContainer extends AnimationTimer {
 	
 	public void setDataProcessor(DataProcessor dp) {
 		this.dataProcessor = dp;
+	}
+	
+	public void setZoom(double zoom) {
+		this.zoom = zoom;
 	}
 	
 	abstract public void init();

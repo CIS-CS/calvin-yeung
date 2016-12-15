@@ -13,8 +13,9 @@ public class LargePlanet extends Entity {
 
 	@Override
 	public void render(GraphicsContext gc) {
+		double r = radius * getContainer().getZoom();
 		gc.setFill(Color.GOLDENROD);
-		gc.fillOval(getX() - radius, getY() - radius, radius*2, radius*2);
+		gc.fillOval(getX() - r, getY() - r, r*2, r*2);
 	}
 
 	@Override
